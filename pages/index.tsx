@@ -1,6 +1,8 @@
 import Layout from "@common/Layout";
 import Login from "@components/Login";
+import { GetStaticProps } from "next";
 import { ReactElement } from "react";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const Home = () => {
   return (
@@ -10,8 +12,14 @@ const Home = () => {
   );
 };
 
-export default Home;
-
 Home.getLayout = function getLayout(page: ReactElement) {
   return <Layout title="i18 next">{page}</Layout>;
 };
+
+export default Home;
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale)),
+  },
+});
