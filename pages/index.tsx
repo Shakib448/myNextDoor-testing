@@ -3,7 +3,11 @@ import Login from "@components/Login";
 import { ReactElement } from "react";
 
 const Home = () => {
-  return <Login />;
+  return (
+    <div className="flex justify-center items-center h-screen bg-indigo-400">
+      <Login />
+    </div>
+  );
 };
 
 export default Home;
