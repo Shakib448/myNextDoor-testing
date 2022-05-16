@@ -1,7 +1,8 @@
+import { addValue } from "@controllers/AddValue.controller";
 import express from "express";
 
 const router = express.Router();
 
-router.route("/add-value").post();
+router.route("/").post(addValue);
 
 export default router;
