@@ -1,3 +1,5 @@
 export interface ADD_VALUE {
-  name: string;
+  firstName: string;
+  lastName: string;
+  password: string;
 }

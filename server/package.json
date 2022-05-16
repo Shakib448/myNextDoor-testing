@@ -7,7 +7,7 @@
     "start": "ts-node main.ts",
     "server": "nodemon main.ts",
     "client": "npm run dev --prefix ../client",
-    "dev": "concurrently \"npm run client\" \"npm run server\""
+    "dev": "concurrently  \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "Muktadir",

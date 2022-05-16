@@ -31,7 +31,6 @@
     "paths": {
       "@config/*": ["./config/*"],
       "@utils/*": ["./utils/*"],
-      "@middleware/*": ["./middleware/*"],
       "@controllers/": ["./controllers/*"],
       "@routes": ["./routes/*"],
       "@models": ["./models/*"],
