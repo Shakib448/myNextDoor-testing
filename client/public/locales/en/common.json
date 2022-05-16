@@ -2,5 +2,6 @@
   "first_name": "First Name",
   "last_name": "Last Name",
   "password": "Password",
-  "language": "Language"
+  "language": "Language",
+  "save": "save"
 }
