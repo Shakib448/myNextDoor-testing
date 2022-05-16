@@ -1,11 +1,29 @@
+import { Api } from "@utils/request";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import React from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+type Inputs = {
+  firstName: string;
+  lastName: string;
+  password: string;
+};
 
 const Login = () => {
   const { t } = useTranslation("common");
+
+  const { register, handleSubmit, reset } = useForm<Inputs>();
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    try {
+      await Api.post("/api/add-value", data);
+      reset();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
-    <form className="w-full max-w-lg">
+    <form className="w-full max-w-lg" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-wrap -mx-3 mb-6">
         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
           <label
@@ -19,6 +37,7 @@ const Login = () => {
             id="grid-first-name"
             type="text"
             placeholder="Jane"
+            {...register("firstName", { required: true })}
           />
         </div>
         <div className="w-full md:w-1/2 px-3">
@@ -26,13 +45,14 @@ const Login = () => {
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             htmlFor="grid-last-name"
           >
-            {t("first_name")}
+            {t("last_name")}
           </label>
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="grid-last-name"
             type="text"
             placeholder="Doe"
+            {...register("lastName", { required: true })}
           />
         </div>
       </div>
@@ -49,9 +69,17 @@ const Login = () => {
             id="grid-password"
             type="password"
             placeholder="******************"
+            {...register("password", { required: true })}
           />
         </div>
       </div>
+      <button
+        type="submit"
+        className="bg-black mb-3 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
+        {t("save")}
+      </button>
+
       <div className="flex flex-wrap -mx-3 mb-2">
         <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
           <label
