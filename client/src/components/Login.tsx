@@ -1,8 +1,11 @@
+// @ts-nocheck
+
 import { Api } from "@utils/request";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useMutation, useQueryClient } from "react-query";
 
 type Inputs = {
   firstName: string;
@@ -13,10 +16,24 @@ type Inputs = {
 const Login = () => {
   const { t } = useTranslation("common");
 
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation(
+    async (value) => {
+      const { data } = await Api.post("/api/add-value", value);
+      return data;
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("values");
+      },
+    }
+  );
+
   const { register, handleSubmit, reset } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<Inputs> = async (data: any) => {
     try {
-      await Api.post("/api/add-value", data);
+      await mutation.mutateAsync(data);
       reset();
     } catch (error) {
       console.log(error);
