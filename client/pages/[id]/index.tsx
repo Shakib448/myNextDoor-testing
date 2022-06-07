@@ -3,7 +3,11 @@ import UpdateUserCom from "@components/updateUser";
 import React, { ReactElement } from "react";
 
 const UpdateUser = () => {
-  return <UpdateUserCom />;
+  return (
+    <div className="flex justify-center items-center h-screen bg-indigo-400">
+      <UpdateUserCom />
+    </div>
+  );
 };
 
 UpdateUser.getLayout = function getLayout(page: ReactElement) {
