@@ -12,11 +12,6 @@ const AddValueSchema = new Schema<ADD_VALUE>(
     password: {
       type: String,
     },
-    details: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: "Details",
-    },
   },
   {
     timestamps: true,

@@ -40,18 +40,20 @@ export const getValueById = async (req: Request, res: Response) => {
   }
 };
 
-export const addDetails = async (req: Request, res: Response) => {
-  try {
-    const value = await AddValue.findById(req.params.id);
+// export const addDetails = async (req: Request, res: Response) => {
+//   try {
+//     const value = await AddValue.findById(req.params.id);
 
-    if (value) {
-      value.details.push(req.body);
+//     if (value) {
+//       const addAddress = new AddDetails({ user: value._id, ...req.body });
 
-      const addedDetails = await value.save();
-      res.status(201).json({ message: "Details updated successfully" });
-      return addedDetails;
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
+//       const addedDetails = await addAddress.save();
+//       res.status(201).json({ message: "Details updated successfully" });
+//       return addedDetails;
+//     } else {
+//       res.status(500).json({ message: "Internal Server Error" });
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
