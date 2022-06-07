@@ -21,7 +21,7 @@ export const addValue = async (req: Request, res: Response) => {
 
 export const getValue = async (req: Request, res: Response) => {
   try {
-    const values = await AddValue.find().select("firstName");
+    const values = await AddValue.find();
 
     res.status(201).json(values);
   } catch (error) {

@@ -1,8 +1,9 @@
 import Layout from "@common/Layout";
+import UserCom from "@components/UserCom";
 import React, { ReactElement } from "react";
 
 const User = () => {
-  return <div>User </div>;
+  return <UserCom />;
 };
 
 User.getLayout = function getLayout(page: ReactElement) {
