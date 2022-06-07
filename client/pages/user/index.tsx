@@ -1,9 +1,11 @@
 import Layout from "@common/Layout";
 import UserCom from "@components/UserCom";
+import { GetStaticProps } from "next";
 import React, { ReactElement } from "react";
+import { getValues } from "src/Query";
 
-const User = () => {
-  return <UserCom />;
+const User = ({ values }: any) => {
+  return <UserCom values={values} />;
 };
 
 User.getLayout = function getLayout(page: ReactElement) {
@@ -11,3 +13,9 @@ User.getLayout = function getLayout(page: ReactElement) {
 };
 
 export default User;
+
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await getValues();
+
+  return { props: { values: data } };
+};

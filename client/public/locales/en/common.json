@@ -3,5 +3,7 @@
   "last_name": "Last Name",
   "password": "Password",
   "language": "Language",
-  "save": "save"
+  "save": "save",
+  "address": "Address",
+  "zipCode": "Zip Code"
 }

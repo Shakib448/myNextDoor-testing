@@ -28,3 +28,12 @@ export const getValue = async (req: Request, res: Response) => {
     console.log(error);
   }
 };
+
+export const getValueById = async (req: Request, res: Response) => {
+  try {
+    const value = await AddValue.findById(req.params.id);
+    res.status(201).json(value);
+  } catch (error) {
+    console.log(error);
+  }
+};
