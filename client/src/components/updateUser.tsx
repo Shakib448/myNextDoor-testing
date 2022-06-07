@@ -13,7 +13,7 @@ type Inputs = {
   password: string;
 };
 
-const Login = () => {
+const UpdateUserCom = () => {
   const { t } = useTranslation("common");
 
   const queryClient = useQueryClient();
@@ -116,11 +116,6 @@ const Login = () => {
                 Franch
               </button>
             </Link>
-            <Link href="/user" passHref>
-              <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-                Got to user router
-              </button>
-            </Link>
           </div>
         </div>
       </div>
@@ -128,4 +123,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default UpdateUserCom;
