@@ -18,3 +18,16 @@ export const addValue = async (req: Request, res: Response) => {
     console.log(error);
   }
 };
+
+
+
+export const getValue = async (req: Request, res: Response) => {
+  try {
+    const values = await AddValue.find()
+    
+    res.status(201).json(values);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
