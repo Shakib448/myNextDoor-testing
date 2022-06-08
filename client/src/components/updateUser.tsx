@@ -20,10 +20,7 @@ const UpdateUserCom = () => {
 
   const mutation = useMutation(
     async (value) => {
-      const { data } = await updateValuesById(
-        `/api/add-value/${query?.id}`,
-        value
-      );
+      const { data } = await updateValuesById(query?.id, value);
       return data;
     },
     {
@@ -65,7 +62,6 @@ const UpdateUserCom = () => {
               placeholder="Jane"
               {...register("firstName", { required: true })}
               defaultValue={singleValue?.firstName}
-              readOnly
             />
           </div>
           <div className="w-full md:w-1/2 px-3">
@@ -81,7 +77,6 @@ const UpdateUserCom = () => {
               type="text"
               placeholder="Doe"
               defaultValue={singleValue?.lastName}
-              readOnly
               {...register("lastName", { required: true })}
             />
           </div>
@@ -100,7 +95,6 @@ const UpdateUserCom = () => {
               type="password"
               placeholder="******************"
               defaultValue={singleValue?.password}
-              readOnly
               {...register("password", { required: true })}
             />
           </div>
