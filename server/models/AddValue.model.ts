@@ -12,6 +12,12 @@ const AddValueSchema = new Schema<ADD_VALUE>(
     password: {
       type: String,
     },
+    address: {
+      type: String,
+    },
+    zipCode: {
+      type: String,
+    },
   },
   {
     timestamps: true,
