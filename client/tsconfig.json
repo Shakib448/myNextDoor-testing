@@ -19,6 +19,7 @@
       "@components/*": ["./src/components/*"],
       "@common/*": ["./src/common/*"],
       "@utils/*": ["./src/utils/*"],
+      "@Query": ["./@Query/index.ts"],
       "@styles/*": ["./styles/*"]
     }
   },

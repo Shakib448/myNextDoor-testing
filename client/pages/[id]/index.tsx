@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 
 import { GetStaticPaths, GetStaticProps } from "next";
 import React, { ReactElement } from "react";
-import { getValuesById } from "src/Query";
+import { getValuesById } from "@Query";
 import { dehydrate, QueryClient } from "react-query";
 
 const UpdateUserCom = dynamic(() => import("@components/updateUser"), {

@@ -44,15 +44,15 @@ export const addDetails = async (req: Request, res: Response) => {
     const value = await AddValue.findById(req.params.id);
     const { address, zipCode } = req.body;
     if (value) {
-      const addAddress = new AddDetails({
-        user: value._id.toString(),
-        address,
-        zipCode,
-      });
+      value.firstName = req.body.firstName || value.firstName;
+      value.lastName = req.body.lastName || value.lastName;
+      value.password = req.body.password || value.password;
+      value.address = address || value.address;
+      value.zipCode = zipCode || value.zipCode;
 
-      const addedDetails = await addAddress.save();
+      const updateValues = await value.save();
       res.status(201).json({ message: "Details updated successfully" });
-      return addedDetails;
+      return updateValues;
     } else {
       res.status(500).json({ message: "Internal Server Error" });
     }

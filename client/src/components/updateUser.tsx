@@ -1,13 +1,12 @@
 // @ts-nocheck
 
-import { Api } from "@utils/request";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
-import { getValuesById } from "src/Query";
+import { getValuesById, updateValuesById } from "@Query";
 
 type Inputs = {
   firstName: string;
@@ -21,7 +20,10 @@ const UpdateUserCom = () => {
 
   const mutation = useMutation(
     async (value) => {
-      const { data } = await Api.post("/api/add-value", value);
+      const { data } = await updateValuesById(
+        `/api/add-value/${query?.id}`,
+        value
+      );
       return data;
     },
     {
@@ -117,6 +119,7 @@ const UpdateUserCom = () => {
               type="address"
               placeholder="******************"
               {...register("address", { required: true })}
+              defaultValue={singleValue?.address}
             />
           </div>
         </div>
@@ -133,6 +136,7 @@ const UpdateUserCom = () => {
               id="grid-zipCode"
               type="zipCode"
               placeholder="******************"
+              defaultValue={singleValue?.zipCode}
               {...register("zipCode", { required: true })}
             />
           </div>

@@ -2,7 +2,7 @@ import Layout from "@common/Layout";
 import UserCom from "@components/UserCom";
 import { GetStaticProps } from "next";
 import React, { ReactElement } from "react";
-import { getValues } from "src/Query";
+import { getValues } from "@Query";
 
 const User = ({ values }: any) => {
   return <UserCom values={values} />;
