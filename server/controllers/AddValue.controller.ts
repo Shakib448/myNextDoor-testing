@@ -1,5 +1,6 @@
 // @ts-nocheck
 
+import AddDetails from "@models/Address.model";
 import AddValue from "@models/AddValue.model";
 import { Request, Response } from "express";
 
@@ -40,20 +41,29 @@ export const getValueById = async (req: Request, res: Response) => {
   }
 };
 
-// export const addDetails = async (req: Request, res: Response) => {
-//   try {
-//     const value = await AddValue.findById(req.params.id);
+export const addDetails = async (req: Request, res: Response) => {
+  try {
+    const value = await AddValue.findById(req.params.id);
+    const { address, zipCode } = req.body;
+    if (value) {
+      const addAddress = new AddDetails({ user: value._id, address, zipCode });
 
-//     if (value) {
-//       const addAddress = new AddDetails({ user: value._id, ...req.body });
+      const addedDetails = await addAddress.save();
+      res.status(201).json({ message: "Details updated successfully" });
+      return addedDetails;
+    } else {
+      res.status(500).json({ message: "Internal Server Error" });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-//       const addedDetails = await addAddress.save();
-//       res.status(201).json({ message: "Details updated successfully" });
-//       return addedDetails;
-//     } else {
-//       res.status(500).json({ message: "Internal Server Error" });
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+export const getDetails = async (req: Request, res: Response) => {
+  try {
+    const values = await AddDetails.find();
+    res.status(200).json(values);
+  } catch (error) {
+    console.log(error);
+  }
+};
