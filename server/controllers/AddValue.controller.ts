@@ -60,3 +60,19 @@ export const addDetails = async (req: Request, res: Response) => {
     console.log(error);
   }
 };
+
+export const deleteValue = async (req: Request, res: Response) => {
+  try {
+    const value = await AddValue.findById(req.params.id);
+    console.log(value);
+    if (value) {
+      const removeValue = await value.remove();
+      res.json({ message: "Value removed successfully" });
+      return removeValue;
+    } else {
+      res.status(404).json({ message: "Value not found" });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};

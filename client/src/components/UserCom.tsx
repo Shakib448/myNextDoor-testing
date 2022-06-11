@@ -1,12 +1,27 @@
 import Link from "next/link";
 import React from "react";
-import { useQuery } from "react-query";
-import { getValues } from "@Query";
+import { useQuery, useMutation, useQueryClient } from "react-query";
+import { deleteValuesById, getValues } from "@Query";
 
 const UserCom = ({ values }: any) => {
+  const queryClient = useQueryClient();
+
   const { data, isLoading } = useQuery("values", getValues, {
     initialData: values,
   });
+
+  const mutation = useMutation(
+    async (item: any) => {
+      const { data } = await deleteValuesById(item?._id);
+      return data;
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("values");
+      },
+    }
+  );
+
   return (
     <div className="flex space-x-2 justify-center m-4 items-center h-screen flex-col">
       {isLoading
@@ -23,9 +38,23 @@ const UserCom = ({ values }: any) => {
                   Update
                 </button>
               </Link>
+              <button
+                onClick={async () => await mutation.mutateAsync(item)}
+                className="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+              >
+                delete
+              </button>
               <hr />
             </div>
           ))}
+
+      {data.length === 0 && (
+        <Link href="/">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
+            Back
+          </button>
+        </Link>
+      )}
     </div>
   );
 };
