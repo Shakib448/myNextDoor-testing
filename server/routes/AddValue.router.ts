@@ -1,6 +1,6 @@
 import express from "express";
 import {
-  addDetails,
+  updateDetails,
   addValue,
   deleteValue,
   getValue,
@@ -10,7 +10,7 @@ import {
 const router = express.Router();
 
 router.route("/").post(addValue).get(getValue);
-router.route("/:id").get(getValueById).post(addDetails);
+router.route("/:id").get(getValueById).put(updateDetails);
 router.route("/delete/:id").delete(deleteValue);
 
 export default router;

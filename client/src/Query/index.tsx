@@ -11,7 +11,7 @@ export const getValuesById = async (id: string) => {
 };
 
 export const updateValuesById = async (id: string, value: any) => {
-  const { data } = await Api.post(`/api/add-value/${id}`, value);
+  const { data } = await Api.put(`/api/add-value/${id}`, value);
   return data;
 };
 

@@ -39,7 +39,7 @@ export const getValueById = async (req: Request, res: Response) => {
   }
 };
 
-export const addDetails = async (req: Request, res: Response) => {
+export const updateDetails = async (req: Request, res: Response) => {
   try {
     const value = await AddValue.findById(req.params.id);
     const { address, zipCode } = req.body;
