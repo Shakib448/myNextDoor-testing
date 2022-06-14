@@ -64,7 +64,6 @@ export const updateDetails = async (req: Request, res: Response) => {
 export const deleteValue = async (req: Request, res: Response) => {
   try {
     const value = await AddValue.findById(req.params.id);
-    console.log(value);
     if (value) {
       const removeValue = await value.remove();
       res.json({ message: "Value removed successfully" });

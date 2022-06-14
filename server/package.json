@@ -8,7 +8,8 @@
     "server": "nodemon main.ts",
     "client": "npm run dev --prefix ../client",
     "dev": "concurrently  \"npm run server\" \"npm run client\"",
-    "test": "jest --watchAll --runInBand"
+    "test": "jest --watchAll --maxWorkers=100%",
+    "test:report": "jest --coverage --maxWorkers=100%"
   },
   "keywords": [],
   "author": "Muktadir",
